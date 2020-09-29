@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LandingPage() {
+export default function UserProfile() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <h1>Welcome! Please login to continue.</h1>
+      <h1>User Profile</h1>
     </div>
   );
 }

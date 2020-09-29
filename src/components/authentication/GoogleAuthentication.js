@@ -71,7 +71,7 @@ class GoogleAuthentication extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <React.Fragment>
-          <Button color="inherit" onClick={this.onSignOut}>
+          <Button className={this.props.className} color="inherit" onClick={this.onSignOut}>
             {this.props.signOutText}
           </Button>
         </React.Fragment>
@@ -80,7 +80,7 @@ class GoogleAuthentication extends React.Component {
 
     return (
       <React.Fragment>
-        <Button color="inherit" onClick={this.onSignIn}>
+        <Button className={this.props.className} color="inherit" onClick={this.onSignIn}>
           {this.props.signInText}
         </Button>
       </React.Fragment>
