@@ -24,6 +24,7 @@ import Dashboard from "./Dashboard";
 import Home from "./Home";
 import GoogleAuthentication from "./authentication/GoogleAuthentication";
 import UserProfile from "./UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 const drawerWidth = 240;
 
@@ -175,12 +176,12 @@ export default function PersistentDrawerLeft() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/profile">
+          <PrivateRoute path="/profile">
             <UserProfile />
-          </Route>
-          <Route path="/dashboard">
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </main>
     </div>
