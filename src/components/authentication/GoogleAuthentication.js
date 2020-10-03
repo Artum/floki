@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 import { signIn, signOut } from "../../redux/actions";
 
@@ -47,18 +47,20 @@ class GoogleAuthentication extends React.Component {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
-          clientId: "526253080549-64b3tedvs9oqtgfseto9atnb2i5a6bcc.apps.googleusercontent.com",
-          scope: "profile openid",
+          clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+          scope: "email profile openid",
         })
-        .then(() => {
-          this.auth = window.gapi.auth2.getAuthInstance();
+        .then(
+          () => {
+            this.auth = window.gapi.auth2.getAuthInstance();
 
-          this.onAuthChange(this.auth.isSignedIn.get());
-          this.auth.isSignedIn.listen(this.onAuthChange);
-        })
-        .catch((error) => {
-          console.log(`GoogleAuthentication error: ${error}`);
-        });
+            this.auth.isSignedIn.listen(this.onAuthChange);
+            this.onAuthChange(this.auth.isSignedIn.get());
+          },
+          (error) => {
+            console.log(`GoogleAuthentication error: ${error}`);
+          }
+        );
     });
   }
 

@@ -1,7 +1,8 @@
-import { USER_SIGN_IN, USER_SIGN_OUT } from "../actions/actionTypes";
+import { USER_SIGN_IN, USER_SIGN_OUT, USER_AUTHORIZED } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
   isSignedIn: null,
+  isAuthorized: null,
   userProfile: null,
   authResponse: null,
 };
@@ -24,6 +25,12 @@ export default (state = INITIAL_STATE, action) => {
         authProvider: null,
         userProfile: null,
         authResponse: null,
+      };
+
+    case USER_AUTHORIZED:
+      return {
+        ...state,
+        isAuthorized: true,
       };
 
     default:
