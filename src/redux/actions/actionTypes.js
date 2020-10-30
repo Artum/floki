@@ -1,3 +1,4 @@
 export const USER_SIGN_IN = "USER_SIGN_IN";
 export const USER_SIGN_OUT = "USER_SIGN_OUT";
 export const USER_AUTHORIZED = "USER_AUTHORIZED";
+export const USER_UNAUTHORIZED = "USER_UNAUTHORIZED";

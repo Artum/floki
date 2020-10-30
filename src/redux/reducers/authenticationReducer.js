@@ -1,4 +1,4 @@
-import { USER_SIGN_IN, USER_SIGN_OUT, USER_AUTHORIZED } from "../actions/actionTypes";
+import { USER_SIGN_IN, USER_SIGN_OUT, USER_AUTHORIZED, USER_UNAUTHORIZED } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
   isSignedIn: null,
@@ -16,6 +16,7 @@ export default (state = INITIAL_STATE, action) => {
         authProvider: action.payloadauthProvider,
         userProfile: action.payload.userProfile,
         authResponse: action.payload.authResponse,
+        accessToken: action.payload.accessToken,
       };
 
     case USER_SIGN_OUT:
@@ -31,6 +32,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthorized: true,
+      };
+
+    case USER_UNAUTHORIZED:
+      return {
+        ...state,
+        isAuthorized: false,
       };
 
     default:
