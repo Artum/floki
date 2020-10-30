@@ -15,7 +15,14 @@ import { isUserAuthorized } from "../api/backend";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "1000",
+    display: "flex",
+    justifyContent: "center",
+    marginLeft: theme.spacing(10),
+    marginRight: theme.spacing(10),
+    width: "100%",
+  },
+  card: {
+    width: "100%",
   },
   media: {
     height: 200,
@@ -74,32 +81,34 @@ export default function UserProfile() {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardMedia className={classes.media} image="https://picsum.photos/1000" />
-      <Avatar alt={userProfile.fullName} src={userProfile.imageUrl} className={classes.avatar} />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2" align="center">
-          {userProfile.fullName}
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Typography gutterBottom variant="h6" align="center">
-              {userProfile.email}
-            </Typography>
+    <div className={classes.root}>
+      <Card className={classes.card}>
+        <CardMedia className={classes.media} image="https://picsum.photos/1000" />
+        <Avatar alt={userProfile.fullName} src={userProfile.imageUrl} className={classes.avatar} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2" align="center">
+            {userProfile.fullName}
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography gutterBottom variant="h6" align="center">
+                {userProfile.email}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              {isAuthorized ? (
+                <Button color="secondary" variant="contained" onClick={onRevokeAuthorize}>
+                  Disable Email Access
+                </Button>
+              ) : (
+                <Button color="primary" variant="contained" onClick={onAuthorize}>
+                  Enable Email Access
+                </Button>
+              )}
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            {isAuthorized ? (
-              <Button color="secondary" variant="contained" onClick={onRevokeAuthorize}>
-                Disable Email Access
-              </Button>
-            ) : (
-              <Button color="primary" variant="contained" onClick={onAuthorize}>
-                Enable Email Access
-              </Button>
-            )}
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
