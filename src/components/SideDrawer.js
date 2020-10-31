@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
@@ -10,6 +12,9 @@ import { Link } from "react-router-dom";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
 import HomeIcon from "@material-ui/icons/Home";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
+import { signOut } from "../redux/actions";
 
 const useStyles = makeStyles({
   list: {
@@ -19,6 +24,8 @@ const useStyles = makeStyles({
 
 export default function SideDrawer(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const isSignedIn = useSelector((state) => state.userAuthentication.isSignedIn);
 
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -27,6 +34,38 @@ export default function SideDrawer(props) {
 
     console.log(props.handleMenuToggle);
     props.handleMenuToggle(open);
+  };
+
+  const logOut = () => {
+    if (isSignedIn) {
+      window.gapi.auth2.getAuthInstance().signOut();
+      dispatch(signOut());
+    }
+  };
+
+  const loginLogout = () => {
+    if (isSignedIn) {
+      return (
+        <List>
+          <ListItem button key="Logout" onClick={logOut}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </List>
+      );
+    }
+    return (
+      <List>
+        <ListItem button key="Login" component={Link} to="/login">
+          <ListItemIcon>
+            <ExitToAppIcon />
+          </ListItemIcon>
+          <ListItemText primary="Login" />
+        </ListItem>
+      </List>
+    );
   };
 
   const list = () => (
@@ -54,6 +93,8 @@ export default function SideDrawer(props) {
           <ListItemText primary="Profile" />
         </ListItem>
       </List>
+      <Divider />
+      {loginLogout()}
     </div>
   );
 
