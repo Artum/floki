@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import Container from "@material-ui/core/Container";
@@ -30,10 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LogIn = () => {
-  const isSignedIn = useSelector((state) => state.userAuthentication.isSignedIn);
-
-  const history = useHistory();
-
   const { handleSubmit, register } = useForm();
 
   const classes = useStyles();
@@ -41,11 +35,6 @@ const LogIn = () => {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
-
-  if (isSignedIn) {
-    history.push("/");
-    return null;
-  }
 
   return (
     <Container className={classes.container} maxWidth="xs">

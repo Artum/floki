@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import { Route, Switch } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import Dashboard from "./Dashboard";
 import Home from "./Home";
 import UserProfile from "./UserProfile";
@@ -10,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import SideDrawer from "./SideDrawer";
 import TopBar from "./TopBar";
 import LogIn from "./LogIn";
+
+import { initializeApplication, signIn, signOut } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -31,12 +36,38 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const isSignedIn = useSelector((state) => state.userAuthentication.isSignedIn);
 
-  const [open, setOpen] = React.useState(false);
+  const isReady = useSelector((state) => state.application.isReady);
+  useEffect(() => {
+    const onAuthChange = (toSignIn) => {
+      console.log(`onAuthChange: ${toSignIn}`);
+      if (toSignIn) {
+        dispatch(signIn());
+      } else {
+        dispatch(signOut());
+      }
+    };
+    dispatch(initializeApplication(onAuthChange));
+  }, [dispatch]);
+
+  const [open, setOpen] = useState(false);
   const handleMenuOpen = () => {
     setOpen(true);
   };
   const handleMenuToggle = (open) => setOpen(open);
+
+  const loginRoute = () => {
+    if (isSignedIn === false) {
+      return (
+        <Route path="/login">
+          <LogIn />
+        </Route>
+      );
+    }
+    return null;
+  };
 
   const mainContent = () => {
     return (
@@ -50,19 +81,24 @@ export default function App() {
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>
-        <Route path="/login">
-          <LogIn />
+        {loginRoute()}
+        <Route>
+          <Redirect to="/" />
         </Route>
       </Switch>
     );
   };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <SideDrawer open={open} handleMenuToggle={handleMenuToggle} />
-      <TopBar onMenuClick={handleMenuOpen} />
-      <div className={classes.content}>{mainContent()}</div>
-    </div>
-  );
+  if (isReady) {
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <SideDrawer open={open} handleMenuToggle={handleMenuToggle} />
+        <TopBar onMenuClick={handleMenuOpen} />
+        <div className={classes.content}>{mainContent()}</div>
+      </div>
+    );
+  }
+
+  return <CircularProgress style={{ marginLeft: "50%", marginTop: "50%" }}></CircularProgress>;
 }

@@ -53,6 +53,11 @@ export default function TopBar(props) {
         </Button>
       );
     }
+
+    if (isSignedIn === null) {
+      return null;
+    }
+
     return (
       <Button color="inherit" onClick={onLoginClick}>
         Login
