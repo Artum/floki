@@ -12,6 +12,9 @@ import GoogleAuthentication from "./authentication/GoogleAuthentication";
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
     padding: theme.spacing(3),
   },
   divider: {
