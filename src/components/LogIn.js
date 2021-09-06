@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonArea: {
     justifyContent: "center",
+    alignItems: "center",
     display: "flex",
-    flexGrow: 1,
   },
   icon: {
     padding: theme.spacing(1),
