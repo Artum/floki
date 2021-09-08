@@ -11,8 +11,6 @@ import DividerWithText from "./DividerWithText";
 import GoogleAuthentication from "./authentication/GoogleAuthentication";
 
 
-import { useDispatch } from "react-redux";
-
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(3),
@@ -34,7 +32,6 @@ const LogIn = () => {
   const { handleSubmit, register } = useForm();
 
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
