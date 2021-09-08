@@ -3,19 +3,16 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
+  content: {
+    alignItems: "top"
+  }
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.content}>
       <h1>Dashboard</h1>
     </div>
   );
