@@ -25,13 +25,13 @@ export default function Dashboard() {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
+    <Grid container className={classes.root} spacing={0}>
       <Typography variant="h1" component="h2" gutterBottom>
         Dashboard
       </Typography>
       
       <Grid item xs={12}>
-        <Grid container justifyContent="left" spacing={spacing}>
+        <Grid container justifyContent="left" spacing={2}>
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => (
             <Grid key={value} item>
               <Paper className={classes.paper} />
