@@ -83,9 +83,9 @@ export default function App() {
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>
-        <PrivateRoute path="/register">
+        <Route path="/register">
           <Register />
-        </PrivateRoute>
+        </Route>
         {loginRoute()}
         <Route>
           <Redirect to="/" />
