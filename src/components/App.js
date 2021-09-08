@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import SideDrawer from "./SideDrawer";
 import TopBar from "./TopBar";
 import LogIn from "./LogIn";
+import Register from "./Register";
 
 import { initializeApplication, signIn, signOut } from "../redux/actions";
 
@@ -20,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   content: {
     display: "flex",
-    flexGrow: 1,
     padding: theme.spacing(3),
+    alignItems: "center",
+    height: "95%",
     justifyContent: "center",
   },
   contentHeader: {
@@ -69,6 +71,17 @@ export default function App() {
     return null;
   };
 
+  const registerRoute = () => {
+    if (isSignedIn === false) {
+      return (
+        <Route path="/register">
+          <Register />
+        </Route>
+      );
+    }
+    return null;
+  };
+
   const mainContent = () => {
     return (
       <Switch>
@@ -82,6 +95,7 @@ export default function App() {
           <Dashboard />
         </PrivateRoute>
         {loginRoute()}
+        {registerRoute()}
         <Route>
           <Redirect to="/" />
         </Route>

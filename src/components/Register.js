@@ -7,13 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import DividerWithText from "./DividerWithText";
-import GoogleAuthentication from "./authentication/GoogleAuthentication";
-
-
-import { useDispatch } from "react-redux";
-
-import { APPLICATION_READY, USER_SIGN_IN, USER_SIGN_OUT, USER_AUTHORIZED, USER_UNAUTHORIZED } from "../redux/actions/actionTypes";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,28 +25,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LogIn = () => {
+const Register = () => {
   const { handleSubmit, register } = useForm();
 
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    dispatch({
-      type: USER_SIGN_IN,
-      payload: {
-        
-      },
-    });
   });
 
   return (
     <Container className={classes.container} maxWidth="xs">
-      <div className={classes.buttonArea}>
-        <GoogleAuthentication></GoogleAuthentication>
-      </div>
-      <DividerWithText>OR</DividerWithText>
       <div>
         <form onSubmit={onSubmit}>
           <Grid container spacing={3}>
@@ -76,18 +58,15 @@ const LogIn = () => {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <Button color="secondary" fullWidth type="submit" variant="contained">
-                Sign In
+              <Button color="primary" fullWidth type="submit" variant="contained">
+                Register
               </Button>
             </Grid>
           </Grid>
         </form>
       </div>
-      <div>
-        <span>New user? Register <a href="/register">here</a>.</span>
-      </div>
     </Container>
   );
 };
 
-export default LogIn;
+export default Register;

@@ -68,6 +68,43 @@ export default function SideDrawer(props) {
     );
   };
 
+  const profile = () => {
+    if (isSignedIn) {
+      return (
+        <React.Fragment>
+          <List>
+            <ListItem button key="Profile" component={Link} to="/profile">
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItem>
+          </List>
+          <Divider />
+        </React.Fragment>
+      );
+    }
+    return null;
+  };
+
+  const dashboard = () => {
+    if (isSignedIn) {
+      return (
+        <React.Fragment>
+          <ListItem button key="Dashboard" component={Link} to="/dashboard">
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        </React.Fragment>
+      );
+    }
+    return null;
+  };
+  
+
+
   const list = () => (
     <div className={classes.list} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
@@ -77,23 +114,10 @@ export default function SideDrawer(props) {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button key="Dashboard" component={Link} to="/dashboard">
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
+        {dashboard()}
       </List>
       <Divider />
-      <List>
-        <ListItem button key="Profile" component={Link} to="/profile">
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
-      </List>
-      <Divider />
+      {profile()}
       {loginLogout()}
     </div>
   );
