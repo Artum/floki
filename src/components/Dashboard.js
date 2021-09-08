@@ -10,14 +10,14 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    alignItems: "start",
+    justifyContent: "start",
   },
   content: {
-    alignItems: "stretch",
-    justifyContent: "stretch",
   },
   paper: {
-    height: 140,
-    width: 100,
+    height: 280,
+    width: 200,
   },
 }));
 
