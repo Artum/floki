@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   content: {
-    alignItems: "top"
+    alignItems: "stretch",
+    justifyContent: "stretch",
   }
 }));
 

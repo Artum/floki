@@ -3,12 +3,9 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    alignItems: "top",
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
+  content: {
+    alignItems: "stretch",
+    justifyContent: "stretch",
   },
 }));
 
@@ -18,13 +15,13 @@ export default function Home() {
 
   if (isSignedIn === null) {
     return (
-    <div className={classes.root}>
+    <div className={classes.content}>
       <h1>Please login to continue.</h1>
     </div>
     );
   }
   return (
-    <div className={classes.root}>
+    <div className={classes.content}>
       <h1>Welcome!</h1>
     </div>
   );
