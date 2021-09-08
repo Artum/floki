@@ -20,7 +20,7 @@ async function initGoogleLibrary() {
 
 export const initializeApplication = (onAuthChange) => {
   return async (dispatch, getState) => {
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 120000));
     const isReady = getState().application.isReady;
     if (isReady) {
       return;
