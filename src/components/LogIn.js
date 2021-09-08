@@ -13,8 +13,6 @@ import GoogleAuthentication from "./authentication/GoogleAuthentication";
 
 import { useDispatch } from "react-redux";
 
-import { APPLICATION_READY, USER_SIGN_IN, USER_SIGN_OUT, USER_AUTHORIZED, USER_UNAUTHORIZED } from "../redux/actions/actionTypes";
-
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(3),
@@ -40,12 +38,6 @@ const LogIn = () => {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    dispatch({
-      type: USER_SIGN_IN,
-      payload: {
-        
-      },
-    });
   });
 
   return (
