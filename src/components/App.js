@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     padding: theme.spacing(3),
-    alignItems: "center",
+    alignItems: "start",
     height: "95%",
-    justifyContent: "center",
+    justifyContent: "start",
   },
   contentHeader: {
     display: "flex",
