@@ -8,11 +8,7 @@ export default function PrivateRoute({ children, ...rest }) {
   console.log(`PrivateRoute: isSignedIn=${isSignedIn}`);
 
   if (isSignedIn === null) {
-    return (
-      <div style={{ display: "flex" }}>
-        <CircularProgress></CircularProgress>
-      </div>
-    );
+    return null;
   }
   return (
     <React.Fragment>

@@ -71,17 +71,6 @@ export default function App() {
     return null;
   };
 
-  const registerRoute = () => {
-    if (isSignedIn === false) {
-      return (
-        <Route path="/register">
-          <Register />
-        </Route>
-      );
-    }
-    return null;
-  };
-
   const mainContent = () => {
     return (
       <Switch>
@@ -94,8 +83,10 @@ export default function App() {
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>
+        <PrivateRoute path="/register">
+          <Register />
+        </PrivateRoute>
         {loginRoute()}
-        {registerRoute()}
         <Route>
           <Redirect to="/" />
         </Route>
