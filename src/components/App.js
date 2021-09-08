@@ -105,5 +105,5 @@ export default function App() {
     );
   }
 
-  return <CircularProgress style={{ marginLeft: "50vh", marginTop: "50vw" }}></CircularProgress>;
+  return <CircularProgress style={{ marginLeft: "50%", marginTop: "25%" }}></CircularProgress>;
 }
