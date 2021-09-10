@@ -44,3 +44,26 @@ export function loginUser(userId, idToken, fullName, firstName, lastName, email)
     headers: { "X-Requested-With": "XMLHttpRequest", "content-type": "application/json" },
   });
 }
+
+
+export function getDocuments() {
+  return axios({
+    method: "GET",
+    url: "/api/document/",
+    headers: {
+      "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
+    },  
+  });
+
+}
+
+
+export function getDocument(id) {
+  return axios({
+    method: "GET",
+    url: `/api/document/${id}`,
+    headers: {
+      "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
+    },  
+  });
+}

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
+
+import { getDocuments } from "../api/backend";
+
+import DocumentCard from "./DocumentCard"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,24 +26,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
+  
+  const [documents, setDocuments] = useState([]);
+
+  useEffect(() => {
+    async function fetchDocuments() {
+      const response = await getDocuments();
+      setDocuments(response.data);
+    }
+
+    fetchDocuments();
+  }, []);
 
   return (
-    <Grid container className={classes.root} spacing={0}>
+    <Grid container className={classes.root} spacing={2}>
       <Typography variant="h1" component="h2" gutterBottom>
         Dashboard
       </Typography>
       
       <Grid item xs={12}>
-        <Grid container justifyContent="left" spacing={2}>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => (
-            <Grid key={value} item>
-              <Paper className={classes.paper}>
-                <Box component="div" spacing={1}>
-                  <Typography variant="h6" gutterBottom>
-                    Document #{value}
-                  </Typography>
-               </Box>
-              </Paper>
+        <Grid container justifycontent="left" spacing={4}>
+          {documents.map((d) => (
+            <Grid key={d.id} item>
+              <DocumentCard document_id={d.id}></DocumentCard>
             </Grid>
           ))}
         </Grid>

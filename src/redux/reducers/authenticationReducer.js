@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isSignedIn: true,
-        authProvider: action.payloadauthProvider,
+        authProvider: action.payload.authProvider,
         userProfile: action.payload.userProfile,
         authResponse: action.payload.authResponse,
         accessToken: action.payload.accessToken,

@@ -20,7 +20,6 @@ async function initGoogleLibrary() {
 
 export const initializeApplication = (onAuthChange) => {
   return async (dispatch, getState) => {
-    await new Promise(r => setTimeout(r, 5000));
     const isReady = getState().application.isReady;
     if (isReady) {
       return;
@@ -89,7 +88,7 @@ export const signIn = () => {
         userProfile.lastName,
         userProfile.email
       );
-      console.log("signIn action: response=" + response.data);
+      console.log("signIn action: response=" + Object.entries(response.data));
       dispatch({
         type: USER_SIGN_IN,
         payload: {
