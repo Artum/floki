@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { getDocuments } from "../api/backend";
 
 import DocumentCard from "./DocumentCard"
+import UploadFile from "./UploadFile"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,33 +17,39 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "start",
     justifyContent: "start",
   },
-  content: {
-  },
-  paper: {
-    height: 280,
-    width: 200,
-  },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   
   const [documents, setDocuments] = useState([]);
+  
+  async function fetchDocuments() {
+    const response = await getDocuments();
+    setDocuments(response.data);
+  }
 
   useEffect(() => {
-    async function fetchDocuments() {
-      const response = await getDocuments();
-      setDocuments(response.data);
-    }
-
     fetchDocuments();
   }, []);
 
+  async function handleFileUploaded() {
+    console.log("Handle file upload event");
+    await fetchDocuments();
+  }
+
   return (
     <Grid container className={classes.root} spacing={2}>
-      <Typography variant="h1" component="h2" gutterBottom>
-        Dashboard
-      </Typography>
+      
+      <Grid item xs={12}>
+        <Typography variant="h1" component="h2">
+          Dashboard
+        </Typography>
+      </Grid>
+
+      <Grid item xs={12}>
+        <UploadFile onFileUploaded={handleFileUploaded}></UploadFile>
+      </Grid>
       
       <Grid item xs={12}>
         <Grid container justifycontent="left" spacing={4}>
@@ -53,6 +60,7 @@ export default function Dashboard() {
           ))}
         </Grid>
       </Grid>
+      
     </Grid>
   );
 }

@@ -67,3 +67,20 @@ export function getDocument(id) {
     },  
   });
 }
+
+export function uploadDocument(file, onUploadProgress) {
+  let formData = new FormData();
+
+  formData.append("file", file);
+
+  return axios({
+    method: "POST",
+    url: "api/document/upload", 
+    data: formData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
+    },
+    onUploadProgress: onUploadProgress,
+  });
+}
