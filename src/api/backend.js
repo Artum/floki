@@ -68,6 +68,16 @@ export function getDocument(id) {
   });
 }
 
+export function getDocumentContent(id) {
+  return axios({
+    method: "GET",
+    url: `/api/document/${id}/content`,
+    headers: {
+      "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
+    },  
+  });
+}
+
 export function uploadDocument(file, onUploadProgress) {
   let formData = new FormData();
 

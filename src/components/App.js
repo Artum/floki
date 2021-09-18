@@ -14,6 +14,7 @@ import SideDrawer from "./SideDrawer";
 import TopBar from "./TopBar";
 import LogIn from "./LogIn";
 import Register from "./Register";
+import DocumentPreview from "./DocumentPreview";
 
 import { initializeApplication, signIn, signOut } from "../redux/actions";
 
@@ -82,6 +83,9 @@ export default function App() {
         </PrivateRoute>
         <PrivateRoute path="/dashboard">
           <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute path="/document/preview/:document_id">
+          <DocumentPreview />
         </PrivateRoute>
         <Route path="/register">
           <Register />

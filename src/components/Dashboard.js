@@ -55,7 +55,7 @@ export default function Dashboard() {
         <Grid container justifycontent="left" spacing={4}>
           {documents.map((d) => (
             <Grid key={d.id} item>
-              <DocumentCard document_id={d.id}></DocumentCard>
+              <DocumentCard document_id={d.id} file_name={d.file_name}></DocumentCard>
             </Grid>
           ))}
         </Grid>

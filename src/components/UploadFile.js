@@ -24,10 +24,10 @@ export default function UploadFile(props) {
         console.log("Upload progress", event);
     }
 
-    const changeHandler = (event) => {
+    const changeHandler = async (event) => {
         console.log("Upload handler", event);
         console.log("Files", event.target.files[0]);
-        uploadDocument(event.target.files[0], uploadProgressHandler);
+        await uploadDocument(event.target.files[0], uploadProgressHandler);
         props.onFileUploaded();
     };
     const buttonClickHandler = (event) => {
