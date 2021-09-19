@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 
-import { signIn, signOut } from "../../redux/actions";
+import { signIn, signOut } from "../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 

@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import DividerWithText from "./DividerWithText";
-import GoogleAuthentication from "./authentication/GoogleAuthentication";
+import GoogleAuthentication from "./GoogleAuthentication";
 
 
 const useStyles = makeStyles((theme) => ({

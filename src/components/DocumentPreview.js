@@ -32,21 +32,21 @@ export default function DocumentPreview() {
     const [documentContent, setDocumentContent] = useState(null);
     const [document, setDocument] = useState(null);
     
-    async function fetchDocument() {
+    async function fetchDocument(id) {
         try {
-            const [documentContentResponse, documentResponse] = await Promise.all([getDocumentContent(document_id), getDocument(document_id)])
-            console.log('Fetched data for document ', document_id);
+            const [documentContentResponse, documentResponse] = await Promise.all([getDocumentContent(id), getDocument(id)])
+            console.log('Fetched data for document ', id);
             setDocumentContent({data: documentContentResponse.data});
             setDocument(documentResponse.data);
         } catch (error) {
-            console.error("Failed to fetch document", document_id, error);
+            console.error("Failed to fetch document", id, error);
         }
         
     }
 
     useEffect(() => {
-        fetchDocument();
-    }, []);
+        fetchDocument(document_id);
+    }, [document_id]);
 
     if (document === null || documentContent === null) {
         return <CircularProgress style={{ marginLeft: "50%", marginTop: "25%" }}></CircularProgress>;
