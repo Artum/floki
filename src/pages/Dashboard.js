@@ -8,8 +8,8 @@ import Grid from '@material-ui/core/Grid';
 
 import { getDocuments } from "../api/backend";
 
-import DocumentCard from "./DocumentCard"
-import UploadFile from "./UploadFile"
+import DocumentCard from "../components/DocumentCard"
+import UploadFile from "../components/UploadFile"
 
 const useStyles = makeStyles((theme) => ({
   root: {
