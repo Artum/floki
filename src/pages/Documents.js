@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Documents() {
   const classes = useStyles();
   
   const [documents, setDocuments] = useState([]);
@@ -43,7 +43,7 @@ export default function Dashboard() {
       
       <Grid item xs={12}>
         <Typography variant="h1" component="h2">
-          Dashboard
+          Documents
         </Typography>
       </Grid>
 

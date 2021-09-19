@@ -9,7 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import TableChart from "@material-ui/icons/TableChart";
 import PersonIcon from "@material-ui/icons/Person";
 import HomeIcon from "@material-ui/icons/Home";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -87,15 +87,15 @@ export default function SideDrawer(props) {
     return null;
   };
 
-  const dashboard = () => {
+  const documents = () => {
     if (isSignedIn) {
       return (
         <React.Fragment>
-          <ListItem button key="Dashboard" component={Link} to="/dashboard">
+          <ListItem button key="Documents" component={Link} to="/documents">
             <ListItemIcon>
-              <DashboardIcon />
+              <TableChart />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Documents" />
           </ListItem>
         </React.Fragment>
       );
@@ -114,7 +114,7 @@ export default function SideDrawer(props) {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        {dashboard()}
+        {documents()}
       </List>
       <Divider />
       {profile()}

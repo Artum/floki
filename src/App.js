@@ -6,12 +6,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import {Dashboard, DocumentPreview, Home, LogIn, Register, UserProfile} from "./pages/index";
+import {DocumentPreview, Home, LogIn, Register, UserProfile} from "./pages/index";
 import PrivateRoute from "./components/PrivateRoute";
 import SideDrawer from "./components/SideDrawer";
 import TopBar from "./components/TopBar";
 
 import { initializeApplication, signIn, signOut } from "./redux/actions";
+import Documents from "./pages/Documents";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -76,8 +77,8 @@ export default function App() {
         <PrivateRoute path="/profile">
           <UserProfile />
         </PrivateRoute>
-        <PrivateRoute path="/dashboard">
-          <Dashboard />
+        <PrivateRoute path="/documents">
+          <Documents />
         </PrivateRoute>
         <PrivateRoute path="/document/preview/:document_id">
           <DocumentPreview />
