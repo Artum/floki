@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const classes = useStyles();
   const isSignedIn = useSelector((state) => state.userAuthentication.isSignedIn);
-  let history = useHistory();
+ 
 
   if (isSignedIn === true) {
     return (
@@ -23,6 +22,9 @@ export default function Home() {
     );
   }
   
-  history.push("/login");
-  return null;
+  return (
+    <div className={classes.content}>
+      <h1>Please login.</h1>
+    </div>
+  );
 }

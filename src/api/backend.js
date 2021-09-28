@@ -46,10 +46,11 @@ export function loginUser(userId, idToken, fullName, firstName, lastName, email)
 }
 
 
-export function getDocuments() {
+export function getDocuments(field, sort) {
   return axios({
     method: "GET",
     url: "/api/document/",
+    params: {field, sort},
     headers: {
       "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
     },  
@@ -61,6 +62,16 @@ export function getDocuments() {
 export function getDocument(id) {
   return axios({
     method: "GET",
+    url: `/api/document/${id}`,
+    headers: {
+      "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
+    },  
+  });
+}
+
+export function deleteDocument(id) {
+  return axios({
+    method: "DELETE",
     url: `/api/document/${id}`,
     headers: {
       "Authorization": `Bearer ${store.getState().userAuthentication.accessToken}`,
